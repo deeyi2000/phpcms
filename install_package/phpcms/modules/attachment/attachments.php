@@ -44,6 +44,7 @@ class attachments
 		$a = $attachment->upload('upload', $site_allowext);
 		if ($a) {
 			$res = array('uploaded' => 1, 'fileName' => $attachment->uploadedfiles[0]['filename'], 'url' => $this->upload_url . $attachment->uploadedfiles[0]['filepath']);
+			$this->_upload_json($a[0], $res['url'], $res['fileName']);
 		} else {
 			$res = array('uploaded' => 0, 'error' => array('message' => $attachment->error()));
 		}
@@ -241,23 +242,12 @@ class attachments
 	}
 
 	/**
-	 * 设置上传的json格式cookie
+	 * 设置H5上传的json格式cookie
+	 *
+	 * @return void
 	 */
-	public function upload_json()
-	{
-		$arr['aid'] = intval($_GET['aid']);
-		$arr['src'] = safe_replace(trim($_GET['src']));
-		$arr['filename'] = urlencode(safe_replace($_GET['filename']));
-		$json_str = json_encode($arr);
-		$att_arr_exist = param::get_cookie('att_json');
-		$att_arr_exist_tmp = explode('||', $att_arr_exist);
-		if (is_array($att_arr_exist_tmp) && in_array($json_str, $att_arr_exist_tmp)) {
-			return true;
-		} else {
-			$json_str = $att_arr_exist ? $att_arr_exist . '||' . $json_str : $json_str;
-			param::set_cookie('att_json', $json_str);
-			return true;
-		}
+	public function upload_json(){
+		return $this->_upload_json($_GET['aid'], $_GET['src'], $_GET['filename']);
 	}
 
 	/**
@@ -299,6 +289,27 @@ class attachments
 			}
 		}
 		return $att;
+	}
+
+	/**
+	 * 设置上传的json格式cookie
+	 */
+	private function _upload_json($aid, $src, $filename)
+	{
+		$json_str = json_encode(array(
+			'aid' => $aid,
+			'src' => $src,
+			'filename' => $filename
+		));
+		$att_arr_exist = param::get_cookie('att_json');
+		$att_arr_exist_tmp = explode('||', $att_arr_exist);
+		if (is_array($att_arr_exist_tmp) && in_array($json_str, $att_arr_exist_tmp)) {
+			return true;
+		} else {
+            $json_str = $att_arr_exist ? $att_arr_exist . '||' . $json_str : $json_str;
+            param::set_cookie('att_json', $json_str);
+            return true;
+		}
 	}
 
 	final public static function admin_tpl($file, $m = '')
