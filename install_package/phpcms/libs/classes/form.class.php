@@ -34,7 +34,7 @@ class form {
 			[ 'Image', 'Html5video','Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ],
 		    '/',
 		    [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ],
-		    [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+		    [ 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
 		    '/',
 		    [ 'Styles', 'Format', 'Font', 'FontSize' ],
 		    [ 'TextColor', 'BGColor' ],
