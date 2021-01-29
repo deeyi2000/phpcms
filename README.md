@@ -1,12 +1,13 @@
 # 介绍
 该仓库是在phpcms v9.6.3的镜像基础上进行维护的。
 
-由于各种原因phpcms官方几乎不再维护，而大量的phpcms用户面临着各种bug风险。
+由于各种原因phpcms官方不再维护，而大量的phpcms用户面临着各种bug风险。
 
 现在我们建立此仓库提供bug修复、新模块、新插件，继续让phpcms在网站开发建设的路上发光发热，紧跟时代步伐。
 
-我们的QQ交流群：
-phpcms交流1群：132936228 交流2群：1090285245
+![技术交流群](https://images.gitee.com/uploads/images/2021/0130/012938_88fe6d00_4966.png "技术交流群.png")
+
+![我的联系方式](https://images.gitee.com/uploads/images/2021/0130/012958_570555d1_4966.png "我的联系方式.png")
 
 # 更新
 1. 支持https
