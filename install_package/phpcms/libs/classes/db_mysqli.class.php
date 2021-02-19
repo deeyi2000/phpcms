@@ -238,22 +238,17 @@ final class db_mysqli {
 			foreach($data as $k=>$v) {
 				switch (substr($v, 0, 2)) {
 					case '+=':
-						$v = substr($v,2);
-						if (is_numeric($v)) {
-							$fields[] = $this->add_special_char($k).'='.$this->add_special_char($k).'+'.$this->escape_string($v, '', false);
-						} else {
-							continue;
+						$v1 = substr($v,2);
+						if (is_numeric($v1)) {
+							$fields[] = $this->add_special_char($k).'='.$this->add_special_char($k).'+'.$this->escape_string($v1, '', false);
+							break;
 						}
-						
-						break;
 					case '-=':
-						$v = substr($v,2);
-						if (is_numeric($v)) {
-							$fields[] = $this->add_special_char($k).'='.$this->add_special_char($k).'-'.$this->escape_string($v, '', false);
-						} else {
-							continue;
-						}
-						break;
+						$v1 = substr($v,2);
+						if (is_numeric($v1)) {
+							$fields[] = $this->add_special_char($k).'='.$this->add_special_char($k).'-'.$this->escape_string($v1, '', false);
+							break;
+						} 
 					default:
 						$fields[] = $this->add_special_char($k).'='.$this->escape_string($v);
 				}
