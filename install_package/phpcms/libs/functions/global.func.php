@@ -288,18 +288,15 @@ function random($length, $chars = '0123456789') {
 */
 function string2array($data) {
 	$data = trim($data);
-	if($data == '') return array();
-	if(strpos($data, 'array')===0){
-		@eval("\$array = $data;");
-	}else{
-		if(strpos($data, '{\\')===0) $data = stripslashes($data);
-		$array=json_decode($data,true);
-		if(strtolower(CHARSET)=='gbk'){
-			$array = mult_iconv("UTF-8", "GBK//IGNORE", $array);
-		}
+	if ($data == '') return array();
+	if (strpos($data, '{\\') === 0) $data = stripslashes($data);
+	$array = json_decode($data, true);
+	if (strtolower(CHARSET) == 'gbk') {
+		$array = mult_iconv("UTF-8", "GBK//IGNORE", $array);
 	}
 	return $array;
 }
+
 /**
 * 将数组转换为字符串
 *
