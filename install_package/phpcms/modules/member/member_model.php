@@ -177,7 +177,7 @@ class member_model extends admin {
 			$modelinfoarr[$k]['setting'] = string2array($v['setting']);
 		}
 
-		$res = var_export($modelinfoarr, TRUE);
+		$res = array2string($modelinfoarr);
 		header('Content-Disposition: attachment; filename="'.$modelarr[$modelid]['tablename'].'.model"');
 		echo $res;exit;
 	}
