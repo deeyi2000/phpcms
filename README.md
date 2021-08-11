@@ -7,7 +7,7 @@
 
 ![技术交流群](https://images.gitee.com/uploads/images/2021/0130/012938_88fe6d00_4966.png "技术交流群.png")
 
-![若需开发服务请联系](https://images.gitee.com/uploads/images/2021/0608/223916_40a306c7_4966.png "若需开发服务请联系.png")
+![若需开发服务请联系](https://images.gitee.com/uploads/images/2021/0811/235203_ee6be114_4966.png "若需开发服务请联系.png")
 
 # 更新
 1. 支持https
