@@ -21,12 +21,12 @@
 		<div class="bk10"></div>
 		';
 		if(!defined('IMAGES_INIT')) {
-			$str = '<script type="text/javascript" src="'.JS_PATH.'swfupload/swf2ckeditor.js"></script><script language="javascript" type="text/javascript" src="'.JS_PATH.'content_addtop.js"></script>';
+			$str = '<script type="text/javascript" src="'.JS_PATH.'uploadifive/handlers.js"></script><script language="javascript" type="text/javascript" src="'.JS_PATH.'content_addtop.js"></script>';
 			define('IMAGES_INIT', 1);
 		} else {
 			$str = '';
 		}
-		$authkey = upload_key("$upload_number,$upload_allowext,$isselectimage");
-		$string .= $str."<div class='picBut cu'><a herf='javascript:void(0);' onclick=\"javascript:flashupload('{$field}_images', '".L('attachment_upload')."','{$field}',change_images,'{$upload_number},{$upload_allowext},{$isselectimage}','formguide','','{$authkey}')\"/> ".L('select_picture')." </a></div>";
+		$authkey = upload_key("{$upload_number},{$upload_allowext},$isselectimage,0,0,");
+		$string .= $str."<div class='picBut cu'><a href='javascript:void(0);' onclick=\"javascript:h5upload('{$field}_images', '".L('attachment_upload')."','{$field}',change_images,'{$upload_number},{$upload_allowext},{$isselectimage},0,0,','formguide','','{$authkey}')\"/> ".L('select_pic')." </a></div>";
 		return $string;
 	}
