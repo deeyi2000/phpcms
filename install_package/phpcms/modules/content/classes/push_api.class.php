@@ -44,7 +44,7 @@ class push_api {
 			foreach($id_arr as $id) {
 				$this->db->table_name = $tablename;
 				$r = $this->db->get_one(array('id'=>$id));
-				$linkurl = preg_match('/^http:\/\//',$r['url']) ? $r['url'] : siteurl($siteid).$r['url'];
+				$linkurl = preg_match('/^https?:\/\//',$r['url']) ? $r['url'] : siteurl($siteid).$r['url'];
 				foreach($ids as $catid) {
 					$siteid = $siteids[$catid];
 					$this->categorys = getcache('category_content_'.$siteid,'commons');
