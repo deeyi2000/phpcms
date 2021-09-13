@@ -4,7 +4,7 @@ $show_header = $show_scroll = 1;
 include $this->admin_tpl('header','attachment');
 ?>
 
-<link href="<?php echo JS_PATH?>swfupload/swfupload.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo JS_PATH?>uploadifive/uploadifive.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript" src="<?php echo JS_PATH?>jquery.imgpreview.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){

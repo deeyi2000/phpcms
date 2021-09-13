@@ -2,7 +2,7 @@
 	$show_header = $show_validator = $show_scroll = 1; 
 	include $this->admin_tpl('header', 'attachment');
 ?>
-<link href="<?php echo JS_PATH?>swfupload/swfupload.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo JS_PATH?>uploadifive/uploadifive.css" rel="stylesheet" type="text/css" />
 <form name="myform" action="" method="get" >
 <input type="hidden" value="attachment" name="m">
 <input type="hidden" value="attachments" name="c">
