@@ -441,7 +441,7 @@ function _sql_split($link,$sql,$r_tablepre = '',$s_tablepre='phpcms_') {
 	$r_tablepre = $r_tablepre ? $r_tablepre : $tablepre;
 	if(mysqli_get_server_info($link) > '4.1' && $dbcharset)
 	{
-		$sql = preg_replace("/TYPE=(InnoDB|MyISAM|MEMORY)( DEFAULT CHARSET=[^; ]+)?/", "ENGINE=\\1 DEFAULT CHARSET=".$dbcharset,$sql);
+		$sql = preg_replace("/ENGINE=(InnoDB|MyISAM|MEMORY)( DEFAULT CHARSET=[^; ]+)?/", "ENGINE=\\1 DEFAULT CHARSET=".$dbcharset,$sql);
 	}
 	
 	if($r_tablepre != $s_tablepre) $sql = str_replace($s_tablepre, $r_tablepre, $sql);
