@@ -43,7 +43,7 @@
 				$v = trim($v);
 				$configs[$k] = $v;
 				$pattern[$k] = "/'".$k."'\s*=>\s*([']?)[^']*([']?)(\s*),/is";
-	        	$replacement[$k] = "'".$k."' => \${1}".$v."\${2}\${3},";					
+	        	$replacement[$k] = "'".$k."' => \${1}".addcslashes($v, '\\')."\${2}\${3},";					
 			}
 		}
 		$str = file_get_contents($configfile);
