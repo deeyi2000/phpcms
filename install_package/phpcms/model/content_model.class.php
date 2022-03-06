@@ -156,8 +156,8 @@ class content_model extends model {
 					$this->table_name = $tablename.'_data';
 					$this->insert($modelinfo);
 					if($data['islink']==1) {
-						$urls = $_POST['linkurl'];
-						$urls = str_replace(array('select ',')','\\','#',"'"),' ',$urls);
+						$urls[0] = $_POST['linkurl'];
+						$urls[0] = str_replace(array('select ',')','\\','#',"'"),' ',$urls[0]);
 					} else {
 						$urls = $this->url->show($newid, 0, $cid, $systeminfo['inputtime'], $data['prefix'],$inputinfo,'add');
 					}
