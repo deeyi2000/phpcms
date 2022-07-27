@@ -5,7 +5,7 @@
 
 现在我们建立此仓库提供bug修复、新模块、新插件，继续让phpcms在网站开发建设的路上发光发热，紧跟时代步伐。
 
-![技术交流群](https://images.gitee.com/uploads/images/2021/0130/012938_88fe6d00_4966.png "技术交流群.png")
+![技术交流群](readme/img-qqgroup.png "技术交流群.png")
 
 ![若需开发服务请联系](https://images.gitee.com/uploads/images/2021/0811/235203_ee6be114_4966.png "若需开发服务请联系.png")
 
