@@ -7,7 +7,15 @@
 
 ![技术交流群](readme/img-qqgroup.png "技术交流群.png")
 
+
+
 ![若需开发服务请联系](https://images.gitee.com/uploads/images/2021/0811/235203_ee6be114_4966.png "若需开发服务请联系.png")
+
+
+**扫描下面的二维码加入我们的QQ频道，参与讨论和查阅精华帖子**
+
+![QQ频道](readme/qq-channel.png)
+
 
 # 更新
 1. 支持https
