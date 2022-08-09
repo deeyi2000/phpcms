@@ -12,7 +12,7 @@ class param {
 	private $route_config = '';
 	
 	public function __construct() {
-		if(!get_magic_quotes_gpc()) {
+		if(!function_exists('get_magic_quotes_gpc') || !get_magic_quotes_gpc()) {
 			$_POST = new_addslashes($_POST);
 			$_GET = new_addslashes($_GET);
 			$_REQUEST = new_addslashes($_REQUEST);
