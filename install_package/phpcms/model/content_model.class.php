@@ -93,7 +93,7 @@ class content_model extends model {
 		//更新URL地址
 		if($data['islink']==1) {
 			$urls[0] = trim_script($_POST['linkurl']);
-			$urls[0] = remove_xss($urls[0]);
+			$urls[0] = html_entity_decode(remove_xss($urls[0]));
 			
 			$urls[0] = str_replace(array('select ',')','\\','#',"'"),' ',$urls[0]);
 		} else {

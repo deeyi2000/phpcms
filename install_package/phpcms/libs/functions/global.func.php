@@ -536,7 +536,7 @@ function my_error_handler($errno, $errstr, $errfile, $errline) {
  */
 function showmessage($msg, $url_forward = 'goback', $ms = 1250, $dialog = '', $returnjs = '') {
     if($url_forward === HTTP_REFERER){
-        $url_forward = remove_xss(safe_replace($url_forward));
+        $url_forward = html_entity_decode(remove_xss(safe_replace($url_forward)));
     }
 	if(defined('IN_ADMIN')) {
 		include(admin::admin_tpl('showmessage', 'admin'));
