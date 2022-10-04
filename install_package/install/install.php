@@ -283,7 +283,7 @@ switch($step)
 			set_sso_config($sso_config,'system');   //写入sso中配置信息
 			set_sso_config($sso_db_config,'database'); //写入sso数据库配置信息
 			
-			$link = mysqli_connect($dbhost, $dbuser, $dbpw) or die ('Not connected : ' . mysqli_connect_error());
+			$link = mysqli_connect($dbhost, $dbuser, $dbpw, null, $dbport) or die ('Not connected : ' . mysqli_connect_error());
 			$version = mysqli_get_server_info($link);			
 			if($version > '4.1' && $dbcharset) {
 				mysqli_query($link, "SET NAMES '$dbcharset'");
