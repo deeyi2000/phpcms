@@ -383,21 +383,68 @@ class html {
 			}
 		}
 	}
-	/**
-	* 生成相关栏目列表、只生成前5页
-	* @param $catid
-	*/
-	public function create_relation_html($catid) {
-		for($page = 1; $page < 6; $page++) {
-			$this->category($catid,$page);
-		}
-		//检查当前栏目的父栏目，如果存在则生成
-		$arrparentid = $this->categorys[$catid]['arrparentid'];
-		if($arrparentid) {
-			$arrparentid = explode(',', $arrparentid);
-			foreach ($arrparentid as $catid) {
-				if($catid) $this->category($catid,1);
-			}
-		}
-	}
+
+    /**
+     * 生成更新相关页面（栏目页、频道页、上下页）
+     * @param $catids
+     * @param $content
+     * @return void
+     */
+    public function create_relation_html($catids, $content = array()) {
+        if(!empty($content)) {
+            foreach ($content as $rs) {
+                $this->_create_previous_next($rs[0], $rs[1]);
+            }
+        }
+        if(!is_array($catids)) {
+            $catids = array($catids);
+        }
+        foreach ($catids as $catid) {
+            for($page = 1; $page < 6; $page++) {
+                $this->category($catid,$page);
+            }
+            //检查当前栏目的父栏目，如果存在则生成
+            $arrparentid = $this->categorys[$catid]['arrparentid'];
+            if($arrparentid) {
+                $arrparentid = explode(',', $arrparentid);
+                foreach ($arrparentid as $catid) {
+                    if($catid) $this->category($catid,1);
+                }
+            }
+        }
+    }
+
+    /**
+     * 生成相关上下页
+     * @param $id
+     * @param $catid
+     * @return void
+     */
+    private function _create_previous_next($id, $catid){
+        $db = pc_base::load_model('content_model');
+        $db->set_model($this->categorys[$catid]['modelid']);
+
+        $previous = $db->get_one("catid = $catid AND id < $id", '*', 'id DESC');
+        $this->_update_show($previous);
+
+        $next = $db->get_one("catid = $catid AND id > $id", '*', 'id ASC');
+        $this->_update_show($next);
+    }
+
+    /**
+     * 更新页面
+     * @param $data
+     * @return void
+     */
+    private function _update_show($data){
+        if(!empty($data)) {
+            $db = pc_base::load_model('content_model');
+            $db->set_model($this->categorys[$data['catid']]['modelid']);
+            $db->table_name .= '_data';
+            $rs = $db->get_one(array('id' => $data['id']));
+            $data = array_merge($data, $rs);
+            $urls = $this->url->show($data['id'], 0, $data['catid'], $data['inputtime'], $data['prefix'], $data);
+            $urls['content_ishtml'] && $this->show($urls[1], $data, 0);
+        }
+    }
 }
