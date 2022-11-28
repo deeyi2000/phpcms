@@ -423,10 +423,12 @@ class html {
     private function _create_previous_next($id, $catid){
         $db = pc_base::load_model('content_model');
         $db->set_model($this->categorys[$catid]['modelid']);
+        $table_name = $db->table_name;
 
         $previous = $db->get_one("catid = $catid AND id < $id", '*', 'id DESC');
         $this->_update_show($previous);
 
+        $db->table_name = $table_name;
         $next = $db->get_one("catid = $catid AND id > $id", '*', 'id ASC');
         $this->_update_show($next);
     }
