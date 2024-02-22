@@ -12,6 +12,7 @@ include $this->admin_tpl('header', 'admin');
 　 <?php if(isset($big_menu)) echo '<a class="add fb" href="'.$big_menu[0].'"><em>'.$big_menu[1].'</em></a>　';?><a class="on" href="?m=formguide&c=formguide&a=init"><em><?php echo L('return_list')?></em></a></div>
 </div>
 <div class="pad-10">
+<form method="post" action="?m=formguide&c=index&a=show&formid=<?php echo $formid;?>&siteid=<?php echo $this->siteid;?>" name="myform" id="myform">
 <table class="table_form" width="100%" cellspacing="0">
 <tbody>
 	<?php
@@ -36,7 +37,9 @@ if(is_array($forminfos_data)) {
 ?>
 	</tbody>
 </table>
+<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>">
 <input type="submit" class="button" name="dosubmit" id="dosubmit" value=" <?php echo L('ok')?> ">&nbsp;<input type="reset" class="button" value=" <?php echo L('clear')?> ">
+</form>
 </div>
 </body>
 </html>
