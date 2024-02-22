@@ -24,19 +24,40 @@ margin-left:-280px;position:absolute;width:560px; overflow:visible;}
 	.cr{font-size:12px;font-style:inherit;text-align:center;color:#ccc;width:100%; position:absolute; bottom:58px;}
 	.cr a{color:#ccc;text-decoration:none;}
 </style>
+<script language="javascript" type="text/javascript" src="<?php echo JS_PATH?>crypto-js.js"></script>
 <script language="JavaScript">
 <!--
 	if(top!=self)
 	if(self!=top) top.location=self.location;
 //-->
+
+function enc_submit(e) {
+    var username = e.target.querySelector("input[name=username]");
+    var password = e.target.querySelector("input[name=password]");
+    var code = e.target.querySelector("input[name=code]");
+    var enc = e.target.querySelector("input[name=enc]");
+    
+    var content = username.value + '&' + password.value + '&' + code.value + '&';
+    var ciphertext = CryptoJS.AES.encrypt(content,
+        CryptoJS.enc.Utf8.parse('<?php echo $key?>'), {
+            iv: CryptoJS.enc.Base64.parse('<?php echo $iv?>'),
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.ZeroPadding
+        });
+    username.value = null;
+    password.value = null;
+    code.value = null;
+    enc.value = ciphertext.toString();
+}
 </script>
 </head>
 
 <body onload="javascript:document.myform.username.focus();">
 <div id="login_bg" class="login_box">
 	<div class="login_iptbox">
-   	 <form action="index.php?m=admin&c=index&a=login&dosubmit=1" method="post" name="myform"><input name="dosubmit" value="" type="submit" class="login_tj_btn" /><label><?php echo L('username')?>：</label><input name="username" type="text" class="ipt" value="" /><label><?php echo L('password')?>：</label><input name="password" type="password" class="ipt" value="" /><label><?php echo L('security_code')?>：</label><input name="code" type="text" class="ipt ipt_reg" onfocus="document.getElementById('yzm').style.display='block'" />
+   	 <form action="index.php?m=admin&c=index&a=login&dosubmit=1" method="post" name="myform" onsubmit="return enc_submit(event)"><input name="dosubmit" value="" type="submit" class="login_tj_btn" /><label><?php echo L('username')?>：</label><input name="username" type="text" class="ipt" value="" /><label><?php echo L('password')?>：</label><input name="password" type="password" class="ipt" value="" /><label><?php echo L('security_code')?>：</label><input name="code" type="text" class="ipt ipt_reg" onfocus="document.getElementById('yzm').style.display='block'" />
     <div id="yzm" class="yzm"><?php echo form::checkcode('code_img')?><br /><a href="javascript:document.getElementById('code_img').src='<?php echo SITE_PROTOCOL.SITE_URL.WEB_PATH;?>api.php?op=checkcode&m=admin&c=index&a=checkcode&time='+Math.random();void(0);"><?php echo L('click_change_validate')?></a></div>
+   	     <input name="enc" type="hidden" />
      </form>
     </div>
     <div class="cr"><?php echo L("copyright")?></div>

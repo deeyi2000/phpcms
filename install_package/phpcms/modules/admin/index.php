@@ -25,8 +25,17 @@ class index extends admin {
 	}
 	
 	public function login() {
+	    $key = '5842648512354863';
+	    $iv = 'hIHyIXSypL4+MUuoHyypIQ==';
+	    
 		if(isset($_GET['dosubmit'])) {
-			
+			$enc = isset($_POST['enc']) ? trim($_POST['enc']) : showmessage(L('enc_error'),HTTP_REFERER);
+			$enc = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, base64_decode($enc), MCRYPT_MODE_CBC, base64_decode($iv));
+			$enc = explode("&", $enc);
+			$_POST['username'] = $enc[0];
+			$_POST['password'] = $enc[1];
+			$_POST['code'] = $enc[2];
+			//showmessage(L($_POST['username'] . $_POST['password'] . $_POST['code']));
 			//不为口令卡验证
 			if (!isset($_GET['card'])) {
 				$username = isset($_POST['username']) ? trim($_POST['username']) : showmessage(L('nameerror'),HTTP_REFERER);
