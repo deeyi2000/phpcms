@@ -30,7 +30,8 @@ class index extends admin {
 	    
 		if(isset($_GET['dosubmit'])) {
 			$enc = isset($_POST['enc']) ? trim($_POST['enc']) : showmessage(L('enc_error'),HTTP_REFERER);
-			$enc = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, base64_decode($enc), MCRYPT_MODE_CBC, base64_decode($iv));
+			//$enc = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, base64_decode($enc), MCRYPT_MODE_CBC, base64_decode($iv));
+			$enc = openssl_decrypt($enc, 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, base64_decode($iv));
 			$enc = explode("&", $enc);
 			$_POST['username'] = $enc[0];
 			$_POST['password'] = $enc[1];
